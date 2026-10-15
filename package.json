@@ -1,13 +1,18 @@
 {
   "name": "dsh-alert-inject",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Give your coding agent a voice that speaks up when it's drifting: goal/constraint anchors, déjà-vu retrieval over its own context, repetition detection, reference checks, and context-block-scoped alert judges — all before it answers. Zero third-party deps; core works without any LLM.",
   "files": [
     "lib",
+    "tools",
+    "tests",
     "README.md",
+    "CHANGELOG.md",
+    "PROVIDERS.md",
     "ARTICLE.md",
     "PLUGIN.md",
     "REPORT.md",
+    "AGENTS.md",
     "cordis.patch.yml",
     "selftest.mjs",
     "leak-check.mjs"
@@ -40,5 +45,14 @@
     "goal-drift",
     "retrieval"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanbaiing/dsh-alert-inject.git"
+  },
+  "homepage": "https://github.com/juanbaiing/dsh-alert-inject#readme",
+  "bugs": {
+    "url": "https://github.com/juanbaiing/dsh-alert-inject/issues"
+  },
+  "author": "juanbaiing",
   "license": "MIT"
 }

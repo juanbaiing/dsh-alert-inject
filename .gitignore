@@ -1,0 +1,16 @@
+# 缓存与本地数据（不进仓库）
+*.log
+node_modules/
+
+# 运行期数据（本插件在 ~/.dsh/ 下写这些，通常不在仓库内；
+# 但若有人把 dataDir 指到仓库里，别提交）
+librarian-cache/
+*.archive-*.json
+learning-pending.json
+learning-samples*.jsonl
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

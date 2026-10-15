@@ -1,0 +1,44 @@
+{
+  "name": "dsh-alert-inject",
+  "version": "0.3.0",
+  "description": "Give your coding agent a voice that speaks up when it's drifting: goal/constraint anchors, déjà-vu retrieval over its own context, repetition detection, reference checks, and context-block-scoped alert judges — all before it answers. Zero third-party deps; core works without any LLM.",
+  "files": [
+    "lib",
+    "README.md",
+    "ARTICLE.md",
+    "PLUGIN.md",
+    "REPORT.md",
+    "cordis.patch.yml",
+    "selftest.mjs",
+    "leak-check.mjs"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "scripts": {
+    "test": "node selftest.mjs",
+    "leak-check": "node leak-check.mjs"
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "cordis",
+    "plugin",
+    "metacognition",
+    "self-monitoring",
+    "context-engineering",
+    "agent-awareness",
+    "alert",
+    "goal-drift",
+    "retrieval"
+  ],
+  "license": "MIT"
+}

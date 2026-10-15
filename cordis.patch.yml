@@ -1,0 +1,7 @@
+# dsh-alert-inject bundle patch: mount the alert-injection plugin.
+#
+# 挂一个纯 host 插件：每轮组装 system prompt 时跑判据，命中才注入。
+# 无 config —— 绑定哪些工作区写在 lib/index.js 的 WORKSPACES 里（作者定：绑定工作区）。
+- insert:
+    - id: dsh-alert-inject
+      name: dsh-alert-inject

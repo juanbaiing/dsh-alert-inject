@@ -2,9 +2,19 @@
 *.log
 node_modules/
 
+# ⚠️ 给作者自己的台账 —— **不进仓库**（2026-10-16 发布前审计确认）
+#   · TODO.md      65 KB：含本机路径、会话 id、内部进度
+#   · HANDOVER.md  21 KB：含本机路径、作者原话、会话 id
+#   ⇒ 它们对使用者**毫无意义**，却会泄露作者的本机环境。
+#   ⇒ 想公开"接下来要做什么"，请另写一份**脱敏**的 ROADMAP，别把这个直接推上去。
+TODO.md
+HANDOVER.md
+
 # 运行期数据（本插件在 ~/.dsh/ 下写这些，通常不在仓库内；
 # 但若有人把 dataDir 指到仓库里，别提交）
 librarian-cache/
+memory/db/
+alert-shadow/
 *.archive-*.json
 learning-pending.json
 learning-samples*.jsonl

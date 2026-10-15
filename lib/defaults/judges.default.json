@@ -1,0 +1,67 @@
+{
+  "_说明": "出厂默认判据表 ——【通用常识】，**不含任何具体项目的内容、不含任何人的路径**。",
+  "_为什么它是通用的": "内容取自 `_姿态表.md` 的「通用语气条款」—— 那一节的定位就是「**哪个姿态都别犯**」，故与具体项目无关。",
+  "_为什么全都带 shadow": "新判据**先只记录、不提醒**（见 `lib/shadow.js`）。直接上线会重演判据表自己记着的那句：「首轮实测 5 条警报全是噪声」。⇒ 跑几天、你逐条判「该报/不该报」，再决定去掉 shadow 转正。",
+  "_范式": "报 = （命中 signals 或 anomalies）AND（命中 sources 指定的源）AND（requireTermHit 时须命中术语表）",
+  "_sources 可取值": "思考 / 正文 / 用户 / 工具",
+  "_怎么关掉这一条或全部": "某条 ⇒ 改成 \"enabled\": false；整份不用 ⇒ 在你自己的项目里放一份 `.dsh-alert/judges.json`（它会优先于本文件被找到）。",
+  "meta": ["判据", "哨兵", "影射", "影子模式", "shadow", "客套", "语气条款", "评价性开场", "自我表功", "自指防护"],
+  "meta_说明": "自指防护：**讨论/编写这些判据本身时必然命中信号词**，命中这些则整段不报。",
+  "judges": [
+    {
+      "id": "无价值客套",
+      "sources": ["正文"],
+      "desc": "它不携带信息。参考 Fluent 2：avoid phrases that don't add value。",
+      "note": "「还有什么需要我帮忙的吗」这类收尾，读者读了等于没读。",
+      "signals": ["还有什么需要我帮忙", "还需要我做什么吗", "希望能帮到你", "随时告诉我"],
+      "anomalies": [],
+      "requireTermHit": false,
+      "enabled": true,
+      "shadow": true
+    },
+    {
+      "id": "评价性开场",
+      "sources": ["正文"],
+      "desc": "客服腔。参考 Fluent 2：never use evaluative language。",
+      "note": "「好问题！」「这个想法很棒」—— 那是评价对方，不是回答问题。",
+      "signals": ["好问题", "这个问题问得好", "这个想法很棒", "说得很好", "这个思路不错"],
+      "anomalies": [],
+      "requireTermHit": false,
+      "enabled": true,
+      "shadow": true
+    },
+    {
+      "id": "自我表功",
+      "sources": ["正文"],
+      "desc": "做了就直接说结果，不用先声明自己有多认真。",
+      "note": "「我已经仔细核对过了」—— 说了这句话并不能让结果更可信，只会多占一行。",
+      "signals": ["我已经仔细核对过了", "我非常认真地检查了", "我反复确认过了"],
+      "anomalies": [],
+      "requireTermHit": false,
+      "enabled": true,
+      "shadow": true
+    },
+    {
+      "id": "复述对方的话",
+      "sources": ["正文"],
+      "desc": "对方是要说事，不是要你确认听懂了。",
+      "note": "「我理解你的意思是……」—— 常见于把对方的原话换个说法还回去。",
+      "signals": ["我理解你的意思是", "你的意思是说", "所以你是想", "换句话说你的需求是"],
+      "anomalies": [],
+      "requireTermHit": false,
+      "enabled": true,
+      "shadow": true
+    },
+    {
+      "id": "过度道歉",
+      "sources": ["正文"],
+      "desc": "只在真犯错时说抱歉 —— 别把道歉当缓冲垫。",
+      "note": "参考 Fluent 2：only say \"Sorry\" when the AI has made a mistake。",
+      "signals": ["非常抱歉", "真的很抱歉", "十分抱歉", "实在不好意思"],
+      "anomalies": [],
+      "requireTermHit": false,
+      "enabled": true,
+      "shadow": true
+    }
+  ]
+}

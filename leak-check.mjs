@@ -57,7 +57,7 @@ async function collectTexts() {
   const fakeCtx = {
     tools: { register: (def) => { toolDesc = def?.description || def?.spec?.description || def?.tool?.description || '' } },
     systemPrompt: {
-      variable: (n, fn) => { try { ruleText = fn({ agent: { session: { header: { cwd: 'D:\\dswork' } } } }) || '' } catch { /* ignore */ } },
+      variable: (n, fn) => { try { ruleText = fn({ agent: { session: { header: { cwd: 'D:\\test-project' } } } }) || '' } catch { /* ignore */ } },
       section: () => {},
     },
   }
@@ -90,7 +90,7 @@ async function collectTexts() {
   // ③ alertText 的真实输出（用真实会话跑）
   const f = process.argv[2] || defaultSession()
   if (f && fs.existsSync(f)) {
-    const out = alert.alertText('D:\\dswork', f)
+    const out = alert.alertText('D:\\test-project', f)
     if (out) texts.push({ where: 'alertText 输出', text: out })
   }
 

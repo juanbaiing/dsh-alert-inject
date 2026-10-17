@@ -12,6 +12,7 @@
     "ARTICLE.md",
     "PLUGIN.md",
     "REPORT.md",
+    "DESIGN-evidence.md",
     "AGENTS.md",
     "cordis.patch.yml",
     "selftest.mjs",

@@ -1,6 +1,6 @@
 {
   "name": "dsh-alert-inject",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Give your coding agent a voice that speaks up when it's drifting: goal/constraint anchors, déjà-vu retrieval over its own context, repetition detection, reference checks, and context-block-scoped alert judges — all before it answers. Zero third-party deps; core works without any LLM.",
   "files": [
     "lib",
@@ -47,7 +47,8 @@
     "health": "node tools/health.mjs",
     "check-cross-context": "node tools/check-cross-context.mjs",
     "check-cross-e2e": "node tools/check-cross-e2e.mjs",
-    "check-archive-dir": "node tools/check-archive-dir.mjs"
+    "check-archive-dir": "node tools/check-archive-dir.mjs",
+    "check-setting-docs": "node tools/check-setting-docs.mjs"
   },
   "keywords": [
     "deepseek-harness",

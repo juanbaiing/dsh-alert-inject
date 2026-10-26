@@ -36,6 +36,13 @@ const P = process.argv[2] || process.env.ALERT_PROJECT || process.cwd()
 const SHADOW_TMP = process.env.SHADOW_DIR || path.join(os.tmpdir(), `alert-shadow-selftest-${Date.now()}`)
 process.env.SHADOW_DIR = SHADOW_TMP
 
+/**
+ * ⚠️ 感觉表也会**写磁盘**（`fired` 计数）—— 同样必须在**载入模块之前**关掉。
+ *   否则跑一次自测就往真实感觉表里灌一条假分母（与上面 `SHADOW_DIR` 同源）。
+ *   ⇒ `lib/report.js` 的 `REPORT_OPTS.useFeelings` 就是在模块载入时读它。
+ */
+process.env.ALERT_FEELINGS = '0'
+
 const mods = {}
 for (const m of ['config', 'blocks', 'anchor', 'knowledge', 'extract', 'repetition',
                  'reference-check', 'fok', 'novelty', 'samples', 'librarian', 'learning', 'shadow']) {

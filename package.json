@@ -42,6 +42,7 @@
     "leak-check": "node leak-check.mjs",
     "check-client": "node tools/check-client.mjs",
     "check-client-refs": "node tools/check-client-refs.mjs",
+    "check-corpus": "node tools/check-corpus.mjs",
     "check-routes": "node tools/check-routes.mjs",
     "check-incremental": "node tools/check-incremental.mjs",
     "health": "node tools/health.mjs",

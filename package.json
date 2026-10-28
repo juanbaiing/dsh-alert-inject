@@ -16,7 +16,8 @@
     "AGENTS.md",
     "cordis.patch.yml",
     "selftest.mjs",
-    "leak-check.mjs"
+    "leak-check.mjs",
+    "PROJECT-STATUS.md"
   ],
   "type": "module",
   "main": "lib/index.js",

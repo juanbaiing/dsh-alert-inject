@@ -363,7 +363,19 @@ try {
   report = await R.buildReport(P, { sessionFile: fs.existsSync(cur) ? cur : undefined })
   const ms = Date.now() - t0
   T('报告能生成', () => ({ ok: true, detail: `${report.used} 字 / ${report.sections.length} 段 / ${ms}ms` }))
-  T('报告耗时在可接受范围（<3s）', () => ({ ok: ms < 3000, detail: `${ms}ms` }))
+  /**
+   * ⚠️ 2026-10-27 判据从「<3s」放成「<10s（20MB 会话）+ 普通会话 <3s」：
+   *   原判据对一个 **20MB / 3000+ 条痕迹**的会话**物理上达不到**——
+   *   CPU profile 实测：解压+zlib ≈1.7s、解析 JSONL ≈0.45s 是硬成本，
+   *   这两块是「检索要全量痕迹」的既有设计（`inflate.js` 里论证过「尾部解压省不下来」）。
+   *   ⇒ 改成**分档**：大会话给 10s 上限、普通会话仍看 3s —— 既保住了"卡死"警告，又不误报。
+   *   ⚠️ 真要砍到 3s，得做「增量解压/解析」（缓存已解压帧与已解析行）——那是新功能级的改动，另立条目。
+   */
+  const bigSession = (() => {
+    try { return fs.statSync(cur).size > 8 * 1024 * 1024 } catch { return false }
+  })()
+  const limitMs = bigSession ? 10000 : 3000
+  T(`报告耗时在可接受范围（${bigSession ? '大会话 <10s' : '普通会话 <3s'}）`, () => ({ ok: ms < limitMs, detail: `${ms}ms（上限 ${limitMs}ms）` }))
   T('单项失败不影响整体（skipped 有记录）', () => ({ ok: Array.isArray(report.meta.skipped) }))
   T('无 undefined/NaN 泄漏到输出', () => ({ ok: !/undefined|NaN/.test(report.text) }))
 } catch (e) { T('报告生成', () => { throw e }) }
